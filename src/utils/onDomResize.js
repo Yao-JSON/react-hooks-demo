@@ -1,7 +1,7 @@
 let passiveEvents = false
 try {
   var opts = Object.defineProperty({}, 'passive', {
-    get: function () {
+    get:() => {
       passiveEvents = { passive: true }
     }
   })

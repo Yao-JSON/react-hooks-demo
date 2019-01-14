@@ -1,7 +1,9 @@
-import React, { Component, useRef } from 'react';
+import React, { Component, useRef, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { useMousePosition, useScroll } from './costom-hooks/hooks'
+import onDomResize from './utils/onDomResize'
+
 
 
 const Clicnt = () => {
@@ -31,6 +33,18 @@ const Child = (props) => {
   </div>
 }
 
+const DomSize = () => {
+  const domRef = useRef(null);
+
+  useEffect(() => {
+    console.log(domRef);
+    onDomResize(domRef.current, (res) => {
+      console.log(res);
+    })
+  })
+  return <div className="red" ref={domRef}></div>
+}
+
 
 class App extends Component {
   render() {
@@ -47,6 +61,7 @@ class App extends Component {
           <Clicnt/>
           <Child parentRef={this.app}/>
         </header>
+        <DomSize/>
       </div>
     );
   }
